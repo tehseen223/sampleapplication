@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+    <script type="text/javascript">
+	    function EnableDisable() {
+	        //Reference the Button.
+	        var button = document.getElementById("SubButton");
+			var firstname = document.getElementById("firstName").value;
+			var lastname = document.getElementById("lastName").value;
+			var email = document.getElementById("email").value;
+			var salary = document.getElementById("salary").value;
+			var phoneNumber = document.getElementById("phoneNumber").value;
+
+	        //Verify the TextBox value.
+	        if (firstname.trim() != "" &&  lastname.trim() != "" && email.trim() != "" && salary > 0 && phoneNumber.trim() != "") {
+	            //Enable the TextBox when TextBox has value.
+	            button.disabled = false;
+	        } else {
+	            //Disable the TextBox when TextBox is empty.
+	            button.disabled = true;
+	        }
+	        return button.disabled;
+	    };
+	</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body onload="EnableDisable()">
+<div class="container">
+    <h1>Employee Management System</h1>
+    <hr>
+    <h2>Save Employee</h2>
+
+    <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="POST" >
+        <input type="hidden" th:field="*{employee_id}">
+        <input type="text" th:field="*{firstName}" id="firstName" defaultValue="" placeholder="Employee First Name" onchange="EnableDisable()" class="form-control mb-4 col-5">
+
+        <input type="text" th:field="*{lastName}" id="lastName" defaultValue="" placeholder="Employee Last Name" onchange="EnableDisable()" class="form-control mb-4 col-5">
+
+        <input type="text" th:field="*{email}" id="email" defaultValue="" placeholder="Employee Email" onchange="EnableDisable()" class="form-control mb-4 col-5">
+
+        <input type="number" th:field="*{salary}" id="salary" defaultValue=0 placeholder="Employee Salary" onchange="EnableDisable()" class="form-control mb-4 col-5">
+
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber" defaultValue=0 placeholder="Employee Phone Number" pattern="[\-0-9]+" onchange="EnableDisable()" class="form-control mb-4 col-5">
+
+        <button id="SubButton" type="submit" disabled="EnableDisable()" class="btn btn-info col-3"> Save Employee</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}"> Back to Employee List</a>
+</div>
+</body>
+
+</html>
