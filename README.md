@@ -1,5 +1,6 @@
 HOW TO USE EMPLOYEE PROJECT
 Create database in PostgreSQL, All the connectivity is for Postgre with database name as demo and username as postgres and password as postgres
+To use mysql or H2, two application.properties files have been added data.sql for H2 is also added.
     Run the Spring application with localhost:8080/. User will see the following Page. 
 
 This is Developed in Springboot and the frontend is on thymeleaf. 
